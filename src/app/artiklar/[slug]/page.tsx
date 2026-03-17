@@ -1,9 +1,20 @@
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
+import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
+
+const serif = {
+  fontFamily: "var(--font-serif), 'Fraunces', serif",
+  fontWeight: 400 as const,
+};
+
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 async function getPost(slug: string) {
   return client.fetch(
@@ -28,16 +39,31 @@ export default async function ArtikkelPage({
     <div className="min-h-screen">
       <Nav />
 
-      <article className="mx-auto max-w-[720px] px-6 py-16 sm:py-24">
+      {/* Hero image */}
+      {post.image && (
+        <div className="mx-auto max-w-5xl px-6 mt-4">
+          <div className="aspect-[2.4/1] relative rounded-2xl overflow-hidden bg-[#F5F2EB]">
+            <Image
+              src={urlFor(post.image).width(1200).height(500).url()}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      )}
+
+      <article className="mx-auto max-w-[720px] px-6 py-12 sm:py-16">
         {/* Back link */}
         <Link
           href="/artiklar"
-          className="text-sm text-[#6B6860] hover:text-[#1C1C1A] transition-colors inline-flex items-center gap-1.5 mb-10"
+          className="text-sm text-[#6B6860] hover:text-[#1C1C1A] transition-colors inline-flex items-center gap-1.5 mb-8"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M10 3L5 8L10 13" />
           </svg>
-          Tilbake til artiklar
+          Alle artiklar
         </Link>
 
         {/* Date and tags */}
@@ -59,7 +85,7 @@ export default async function ArtikkelPage({
                   href={`/artiklar?tag=${encodeURIComponent(t)}`}
                   className="px-2 py-0.5 rounded-full text-xs bg-[#EEF5EE] text-[#2D4233] hover:bg-[#C8DEC8] transition-colors"
                 >
-                  {t}
+                  {capitalize(t)}
                 </Link>
               ))}
             </div>
@@ -69,7 +95,7 @@ export default async function ArtikkelPage({
         {/* Title */}
         <h1
           className="text-3xl sm:text-4xl tracking-tight mb-6 text-[#1C1C1A] leading-tight"
-          style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontWeight: 400 }}
+          style={serif}
         >
           {post.title}
         </h1>
@@ -83,7 +109,7 @@ export default async function ArtikkelPage({
 
         {/* Body */}
         {post.body && (
-          <div className="prose">
+          <div className="prose prose-gray max-w-none text-[#3a3a38] leading-[1.75]">
             <PortableText value={post.body} />
           </div>
         )}
