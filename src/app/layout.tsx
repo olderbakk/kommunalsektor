@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const fraunces = Fraunces({
+  variable: "--font-serif",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500"],
   display: "swap",
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="nn">
       <body
-        className={`${cormorant.variable} ${dmSans.variable} antialiased`}
+        className={`${fraunces.variable} ${dmSans.variable} antialiased`}
         style={{
           fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
         }}

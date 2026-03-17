@@ -137,7 +137,7 @@ export default function StepTabs() {
             }`}
             style={{
               fontFamily:
-                "var(--font-cormorant), 'Cormorant Garamond', serif",
+                "var(--font-serif), 'Fraunces', serif",
             }}
           >
             {step.num}
@@ -146,7 +146,7 @@ export default function StepTabs() {
             className="text-xl sm:text-2xl tracking-tight text-[#1C1C1A]"
             style={{
               fontFamily:
-                "var(--font-cormorant), 'Cormorant Garamond', serif",
+                "var(--font-serif), 'Fraunces', serif",
               fontWeight: 400,
             }}
           >

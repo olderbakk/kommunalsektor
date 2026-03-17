@@ -2,7 +2,7 @@ import Link from "next/link";
 import StepTabs from "@/components/StepTabs";
 
 const serif = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+  fontFamily: "var(--font-serif), 'Fraunces', serif",
   fontWeight: 400 as const,
 };
 
@@ -143,81 +143,57 @@ function SectionOperativsystem() {
           </p>
         </div>
 
-        {/* Old vs New - side by side */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Old */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#6B6860] mb-4">
-              Dei gamle systema
-            </p>
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Byråkratiet",
-                  desc: "Reglar og rutinar som frigjer folk frå å måtte tenke sjølv",
-                },
-                {
-                  title: "Hierarkiet",
-                  desc: "Kommando og kontroll der dei høgst oppe fortel resten kva dei skal gjere",
-                },
-                {
-                  title: "Budsjettet",
-                  desc: "Planlegg framtida i detalj og fordel ressursane på førehand",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="border border-[rgba(28,28,26,0.09)] rounded-xl p-5 bg-[#F8F6F1]"
-                >
-                  <p className="font-semibold text-[#1C1C1A] text-sm">{item.title}</p>
-                  <p className="text-[#6B6860] text-sm mt-1">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-sm text-[#6B6860] mt-4 italic">
-              Over 100 år gamle innovasjonar. Forutset stabile omgjevnader og at folk må
-              kontrollerast.
-            </p>
-          </div>
+        {/* Old vs New - row by row */}
+        <div className="grid md:grid-cols-2 gap-x-6 gap-y-0">
+          {/* Headers */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#6B6860] mb-4">
+            Dei gamle systema
+          </p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4 max-md:hidden">
+            Dei nye systema
+          </p>
 
-          {/* New */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4">
-              Dei nye systema
-            </p>
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Designtenking",
-                  desc: "Myndiggjorde kollektiv finn gode løysingar med utgangspunkt i verkelegheita",
-                },
-                {
-                  title: "Sjølvstyrande team",
-                  desc: "Nettverk med ansvar og mynde til å løyse oppgåver og dele det dei lærer",
-                },
-                {
-                  title: "Beyond Budgeting",
-                  desc: "Mål som set retning, prognosar som fortel korleis det går, og fleksibel ressursfordeling",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="border border-[#C8DEC8] rounded-xl p-5 bg-[#EEF5EE]"
-                >
-                  <p className="font-semibold text-[#1C1C1A] text-sm">{item.title}</p>
-                  <p className="text-[#3a3a38] text-sm mt-1">{item.desc}</p>
-                </div>
-              ))}
+          {/* Row pairs */}
+          {[
+            {
+              old: { title: "Byråkratiet", desc: "Reglar og rutinar som frigjer folk frå å måtte tenke sjølv" },
+              new: { title: "Designtenking", desc: "Myndiggjorde kollektiv finn gode løysingar med utgangspunkt i verkelegheita" },
+            },
+            {
+              old: { title: "Hierarkiet", desc: "Kommando og kontroll der dei høgst oppe fortel resten kva dei skal gjere" },
+              new: { title: "Sjølvstyrande team", desc: "Nettverk med ansvar og mynde til å løyse oppgåver og dele det dei lærer" },
+            },
+            {
+              old: { title: "Budsjettet", desc: "Planlegg framtida i detalj og fordel ressursane på førehand" },
+              new: { title: "Beyond Budgeting", desc: "Mål som set retning, prognosar som fortel korleis det går, og fleksibel ressursfordeling" },
+            },
+          ].map((row, i) => (
+            <div key={i} className="contents">
+              <div className="border border-[rgba(28,28,26,0.09)] rounded-xl p-5 bg-[#F8F6F1] mb-3">
+                <p className="font-semibold text-[#1C1C1A] text-sm">{row.old.title}</p>
+                <p className="text-[#6B6860] text-sm mt-1">{row.old.desc}</p>
+              </div>
+              {i === 0 && (
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4 md:hidden">
+                  Dei nye systema
+                </p>
+              )}
+              <div className="border border-[#C8DEC8] rounded-xl p-5 bg-[#EEF5EE] mb-3">
+                <p className="font-semibold text-[#1C1C1A] text-sm">{row.new.title}</p>
+                <p className="text-[#3a3a38] text-sm mt-1">{row.new.desc}</p>
+              </div>
             </div>
-            <p className="text-sm text-[#2D4233] mt-4 italic">
-              Ikkje ein komplett reinstallasjon &ndash; ta det nye i bruk der gevinstane er mest
-              openbare.
-            </p>
-          </div>
+          ))}
         </div>
 
+        {/* Summary line */}
+        <p className="text-sm text-[#6B6860] mt-6 italic text-center">
+          Ikkje ein komplett reinstallasjon &ndash; ta det nye i bruk der gevinstane er mest openbare,
+          og behald det gamle der det gir meining.
+        </p>
+
         {/* Outcomes */}
-        <div className="mt-12 grid sm:grid-cols-3 gap-4">
+        <div className="mt-14 border-t border-[rgba(28,28,26,0.09)] pt-10 grid sm:grid-cols-3 gap-6">
           {[
             {
               title: "Ny styringslogikk",
@@ -232,7 +208,7 @@ function SectionOperativsystem() {
               desc: "Designtenking skapar rammer for å først forstå problema, så finne løysingar kollektivt",
             },
           ].map((item) => (
-            <div key={item.title} className="border-l-2 border-[#2D4233] pl-5 py-3">
+            <div key={item.title} className="border-l-2 border-[#2D4233] pl-5 py-1">
               <p className="font-semibold text-[#1C1C1A] text-sm">{item.title}</p>
               <p className="text-[#6B6860] text-sm mt-1">{item.desc}</p>
             </div>
@@ -364,12 +340,101 @@ function SectionDomeOgKontakt() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[rgba(28,28,26,0.09)]">
-      <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#9B9790]">
-        <p>&copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS</p>
-        <p style={serif} className="text-base text-[#6B6860]">
-          KommunalSektor.no
-        </p>
+    <footer className="border-t border-[rgba(28,28,26,0.09)] bg-[#2D4233] text-white">
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+        {/* Top section */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+          {/* Brand */}
+          <div className="sm:col-span-2 md:col-span-1">
+            <p className="text-2xl tracking-tight mb-3" style={serif}>
+              KommunalSektor
+            </p>
+            <p className="text-sm text-white/60 leading-relaxed">
+              Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+              Innhald
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="#kvifor" className="text-white/70 hover:text-white transition-colors">
+                  Kvifor kommune 4.0?
+                </Link>
+              </li>
+              <li>
+                <Link href="#operativsystem" className="text-white/70 hover:text-white transition-colors">
+                  Operativsystemet
+                </Link>
+              </li>
+              <li>
+                <Link href="#framgangsmaate" className="text-white/70 hover:text-white transition-colors">
+                  Framgangsmåte
+                </Link>
+              </li>
+              <li>
+                <Link href="/artiklar" className="text-white/70 hover:text-white transition-colors">
+                  Døme og artiklar
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Om */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+              Om oss
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/om" className="text-white/70 hover:text-white transition-colors">
+                  Om KommunalSektor
+                </Link>
+              </li>
+              <li>
+                <Link href="/om#partnarar" className="text-white/70 hover:text-white transition-colors">
+                  Partnarar
+                </Link>
+              </li>
+              <li>
+                <a href="https://travers.as/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
+                  Travers
+                </a>
+              </li>
+              <li>
+                <a href="https://bogsnesadvisory.com/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
+                  Bogsnes Advisory
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+              Kontakt
+            </p>
+            <div className="text-sm space-y-2.5">
+              <p className="text-white/90 font-medium">Selseng &amp; Systaddal AS</p>
+              <p className="text-white/60">Helle Selseng</p>
+              <p className="text-white/60">Joakim Systaddal</p>
+              <p className="text-white/60 mt-4">Sogndal, Noreg</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-white/40">
+            &copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS. Alt innhald er fritt tilgjengeleg.
+          </p>
+          <p className="text-sm text-white/40">
+            Inspirert av praksis i Sogndal kommune, 2023&ndash;2025
+          </p>
+        </div>
       </div>
     </footer>
   );

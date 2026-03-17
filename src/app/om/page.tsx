@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const serif = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+  fontFamily: "var(--font-serif), 'Fraunces', serif",
   fontWeight: 400 as const,
 };
 
@@ -148,11 +148,13 @@ export default function OmPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#9B9790]">
-          <p>&copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS</p>
-          <p style={serif} className="text-base text-[#6B6860]">
-            KommunalSektor.no
+      <footer className="border-t border-[rgba(28,28,26,0.09)] bg-[#2D4233] text-white">
+        <div className="mx-auto max-w-5xl px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xl tracking-tight" style={serif}>
+            KommunalSektor
+          </p>
+          <p className="text-sm text-white/40">
+            &copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS
           </p>
         </div>
       </footer>
