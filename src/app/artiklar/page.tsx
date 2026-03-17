@@ -1,12 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 
 async function getPosts() {
   return client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
-      _id, title, slug, summary, tags, publishedAt
+      _id, title, slug, summary, tags, publishedAt, image
     }`
   );
 }
@@ -15,6 +17,10 @@ async function getAllTags() {
   return client.fetch(
     `array::unique(*[_type == "post" && defined(tags)].tags[])`
   );
+}
+
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 export const metadata = {
@@ -72,7 +78,7 @@ export default async function ArtikkelListePage({
                     : "bg-[#F8F6F1] text-[#6B6860] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
                 }`}
               >
-                {t}
+                {capitalize(t)}
               </Link>
             ))}
           </div>
@@ -85,8 +91,19 @@ export default async function ArtikkelListePage({
               <Link
                 key={post._id}
                 href={`/artiklar/${post.slug?.current}`}
-                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl p-6 sm:p-8 bg-white hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
+                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl overflow-hidden bg-white hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
               >
+                {post.image && (
+                  <div className="aspect-[2.2/1] relative bg-[#F5F2EB]">
+                    <Image
+                      src={urlFor(post.image).width(800).height(360).url()}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-6 sm:p-8">
                 {post.publishedAt && (
                   <p className="text-xs text-[#9B9790] mb-2">
                     {new Date(post.publishedAt).toLocaleDateString("nn-NO", {
@@ -111,11 +128,12 @@ export default async function ArtikkelListePage({
                         key={t}
                         className="px-2 py-0.5 rounded-full text-xs bg-[#F8F6F1] text-[#6B6860]"
                       >
-                        {t}
+                        {capitalize(t)}
                       </span>
                     ))}
                   </div>
                 )}
+                </div>
               </Link>
             ))}
           </div>
