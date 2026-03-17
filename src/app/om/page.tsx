@@ -79,7 +79,7 @@ export default function OmPage() {
           className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#1C1C1A] mb-8"
           style={serif}
         >
-          Om KommunalSektor.no
+          Om oss
         </h1>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 text-[#3a3a38] leading-[1.75] text-base">
