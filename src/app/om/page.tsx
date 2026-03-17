@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import Logo from "@/components/Logo";
+import Nav from "@/components/Nav";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -43,35 +43,7 @@ const publicPartners = [
 export default function OmPage() {
   return (
     <div className="min-h-screen">
-      {/* Nav */}
-      <header className="border-b border-[rgba(28,28,26,0.09)] sticky top-0 bg-[#F2EEE6]/95 backdrop-blur-sm z-50">
-        <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
-          <Logo />
-          <nav className="hidden md:flex gap-6 text-sm text-[#6B6860]">
-            <Link href="/#kvifor" className="hover:text-[#1C1C1A] transition-colors">
-              Kvifor
-            </Link>
-            <Link href="/#operativsystem" className="hover:text-[#1C1C1A] transition-colors">
-              Operativsystemet
-            </Link>
-            <Link href="/#framgangsmaate" className="hover:text-[#1C1C1A] transition-colors">
-              Framgangsmåte
-            </Link>
-            <Link href="/artiklar" className="hover:text-[#1C1C1A] transition-colors">
-              Døme
-            </Link>
-            <Link href="/om" className="text-[#1C1C1A] font-medium">
-              Om oss
-            </Link>
-            <Link
-              href="/#kontakt"
-              className="bg-[#2D4233] text-white px-4 py-1.5 rounded-full hover:bg-[#3A5240] transition-colors"
-            >
-              Kontakt
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Nav />
 
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 py-16 sm:py-24">

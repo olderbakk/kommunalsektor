@@ -2,49 +2,28 @@ import Link from "next/link";
 import StepTabs from "@/components/StepTabs";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import Logo from "@/components/Logo";
+import Nav from "@/components/Nav";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
   fontWeight: 400 as const,
 };
 
-function Nav() {
-  return (
-    <header className="border-b border-[rgba(28,28,26,0.09)] sticky top-0 bg-[#F2EEE6]/95 backdrop-blur-sm z-50">
-      <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
-        <Logo />
-        <nav className="hidden md:flex gap-6 text-sm text-[#6B6860]">
-          <Link href="#kvifor" className="hover:text-[#1C1C1A] transition-colors">
-            Kvifor
-          </Link>
-          <Link href="#operativsystem" className="hover:text-[#1C1C1A] transition-colors">
-            Operativsystemet
-          </Link>
-          <Link href="#framgangsmaate" className="hover:text-[#1C1C1A] transition-colors">
-            Framgangsmåte
-          </Link>
-          <Link href="/artiklar" className="hover:text-[#1C1C1A] transition-colors">
-            Døme
-          </Link>
-          <Link href="/om" className="hover:text-[#1C1C1A] transition-colors">
-            Om oss
-          </Link>
-          <Link
-            href="#kontakt"
-            className="bg-[#2D4233] text-white px-4 py-1.5 rounded-full hover:bg-[#3A5240] transition-colors"
-          >
-            Kontakt
-          </Link>
-        </nav>
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
     <section className="mx-auto max-w-3xl px-6 py-24 sm:py-32 text-center">
+      <div className="flex justify-center mb-8">
+        <svg
+          width={40}
+          height={51}
+          viewBox="0 0 135 171"
+          fill="currentColor"
+          className="text-[#2D4233]"
+        >
+          <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
+        </svg>
+      </div>
       <h1
         className="text-4xl sm:text-5xl md:text-6xl tracking-tight leading-tight text-[#1C1C1A]"
         style={serif}
@@ -291,7 +270,7 @@ function SectionDomeOgKontakt() {
   return (
     <>
       {/* Døme */}
-      <section className="border-t border-[rgba(28,28,26,0.09)]">
+      <section id="dome" className="border-t border-[rgba(28,28,26,0.09)]">
         <div className="mx-auto max-w-5xl px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-2xl sm:text-3xl tracking-tight text-[#1C1C1A]" style={serif}>

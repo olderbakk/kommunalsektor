@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 
 async function getPosts() {
   return client.fetch(
@@ -35,38 +36,7 @@ export default async function ArtikkelListePage({
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-5xl px-6 py-5 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl tracking-tight"
-            style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
-          >
-            KommunalSektor
-          </Link>
-          <nav className="hidden sm:flex gap-6 text-sm text-[#6B6860]">
-            <Link href="/" className="hover:text-[#1C1C1A] transition-colors">
-              Hjem
-            </Link>
-            <Link href="/#kvifor" className="hover:text-[#1C1C1A] transition-colors">
-              Kvifor
-            </Link>
-            <Link href="/#framgangsmaate" className="hover:text-[#1C1C1A] transition-colors">
-              Framgangsmåte
-            </Link>
-            <Link href="/artiklar" className="text-[#1C1C1A] font-medium">
-              Døme
-            </Link>
-            <Link href="/#om-oss" className="hover:text-[#1C1C1A] transition-colors">
-              Om oss
-            </Link>
-            <Link href="/#kontakt" className="hover:text-[#1C1C1A] transition-colors">
-              Kontakt
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Nav />
 
       <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-28">
         <h1
