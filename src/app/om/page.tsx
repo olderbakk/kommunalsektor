@@ -101,7 +101,7 @@ export default function OmPage() {
             Partnarar
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {partners.map((partner) => (
               <div
                 key={partner.name}
@@ -131,7 +131,7 @@ export default function OmPage() {
             Dei offentlege hjelparane
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {publicPartners.map((partner) => (
               <div
                 key={partner.name}
