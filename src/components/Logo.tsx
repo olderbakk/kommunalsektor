@@ -17,7 +17,7 @@ export default function Logo({ size = "default" }: { size?: "default" | "large" 
         fill="currentColor"
         className="text-[#2D4233]"
       >
-        <path d="M12 0C5.4 0 0 3.6 0 5.5v15c0 1.2 2.4 3.5 5.5 5.2.9.5 1.9.9 2.8 1.2 1.1.4 2.3.7 3.7.7s2.6-.3 3.7-.7c.9-.3 1.9-.7 2.8-1.2C21.6 24 24 21.7 24 20.5v-15C24 3.6 18.6 0 12 0z" />
+        <path d="M12 0C5.4 0 0 3.2 0 5v11c0 2 4 6.5 8.5 9.2 1.1.7 2.3 1.2 3.5 1.8 1.2-.6 2.4-1.1 3.5-1.8C20 22.5 24 18 24 16V5C24 3.2 18.6 0 12 0z" />
       </svg>
       <span
         className={size === "large" ? "text-2xl tracking-tight" : "text-xl tracking-tight"}
