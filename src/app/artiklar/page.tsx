@@ -1,0 +1,183 @@
+import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+
+async function getPosts() {
+  return client.fetch(
+    `*[_type == "post"] | order(publishedAt desc) {
+      _id, title, slug, summary, tags, publishedAt
+    }`
+  );
+}
+
+async function getAllTags() {
+  return client.fetch(
+    `array::unique(*[_type == "post" && defined(tags)].tags[])`
+  );
+}
+
+export const metadata = {
+  title: "Artiklar — KommunalSektor",
+  description: "Artiklar, erfaringar og refleksjonar frå arbeidet med å gjere noko anna i kommunane.",
+};
+
+export default async function ArtikkelListePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>;
+}) {
+  const { tag } = await searchParams;
+  const [posts, allTags] = await Promise.all([getPosts(), getAllTags()]);
+
+  const filteredPosts = tag
+    ? posts.filter((post: any) => post.tags?.includes(tag))
+    : posts;
+
+  return (
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="border-b border-[rgba(28,28,26,0.09)]">
+        <div className="mx-auto max-w-5xl px-6 py-5 flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-xl tracking-tight"
+            style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
+          >
+            KommunalSektor
+          </Link>
+          <nav className="hidden sm:flex gap-6 text-sm text-[#6B6860]">
+            <Link href="/" className="hover:text-[#1C1C1A] transition-colors">
+              Hjem
+            </Link>
+            <Link href="/#kvifor" className="hover:text-[#1C1C1A] transition-colors">
+              Kvifor
+            </Link>
+            <Link href="/#framgangsmaate" className="hover:text-[#1C1C1A] transition-colors">
+              Framgangsmåte
+            </Link>
+            <Link href="/artiklar" className="text-[#1C1C1A] font-medium">
+              Døme
+            </Link>
+            <Link href="/#om-oss" className="hover:text-[#1C1C1A] transition-colors">
+              Om oss
+            </Link>
+            <Link href="/#kontakt" className="hover:text-[#1C1C1A] transition-colors">
+              Kontakt
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-28">
+        <h1
+          className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#1C1C1A]"
+          style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontWeight: 400 }}
+        >
+          Døme og beskrivingar
+        </h1>
+        <p className="text-[#6B6860] text-base sm:text-lg mb-10 leading-relaxed">
+          Artiklar, erfaringar og refleksjonar frå arbeidet med å gjere noko anna i kommunane.
+        </p>
+
+        {/* Tag filters */}
+        {allTags && allTags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-12">
+            <Link
+              href="/artiklar"
+              className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                !tag
+                  ? "bg-[#2D4233] text-white"
+                  : "bg-[#F8F6F1] text-[#6B6860] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
+              }`}
+            >
+              Alle
+            </Link>
+            {allTags.map((t: string) => (
+              <Link
+                key={t}
+                href={`/artiklar?tag=${encodeURIComponent(t)}`}
+                className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                  tag === t
+                    ? "bg-[#2D4233] text-white"
+                    : "bg-[#F8F6F1] text-[#6B6860] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
+                }`}
+              >
+                {t}
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Post list */}
+        {filteredPosts.length > 0 ? (
+          <div className="space-y-6">
+            {filteredPosts.map((post: any) => (
+              <Link
+                key={post._id}
+                href={`/artiklar/${post.slug?.current}`}
+                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl p-6 sm:p-8 bg-white hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
+              >
+                {post.publishedAt && (
+                  <p className="text-xs text-[#9B9790] mb-2">
+                    {new Date(post.publishedAt).toLocaleDateString("nn-NO", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+                <h2 className="text-lg sm:text-xl font-medium text-[#1C1C1A] group-hover:text-[#2D4233] transition-colors">
+                  {post.title}
+                </h2>
+                {post.summary && (
+                  <p className="mt-2 text-[#6B6860] text-sm sm:text-base leading-relaxed line-clamp-2">
+                    {post.summary}
+                  </p>
+                )}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {post.tags.map((t: string) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 rounded-full text-xs bg-[#F8F6F1] text-[#6B6860]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-[#6B6860] text-base">
+              {tag
+                ? `Ingen artiklar med emneord "${tag}" enno.`
+                : "Ingen artiklar enno."}
+            </p>
+            <p className="text-[#9B9790] text-sm mt-2">
+              Legg til artiklar i{" "}
+              <Link href="/studio" className="underline text-[#2D4233]">
+                Sanity Studio
+              </Link>
+              .
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-[rgba(28,28,26,0.09)]">
+        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#9B9790]">
+          <p>&copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS</p>
+          <p
+            style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
+            className="text-base text-[#6B6860]"
+          >
+            KommunalSektor.no
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
