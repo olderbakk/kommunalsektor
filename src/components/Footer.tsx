@@ -13,9 +13,20 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 md:gap-8">
           {/* Brand */}
           <div>
-            <p className="text-2xl tracking-tight mb-4" style={serif}>
-              KommunalSektor
-            </p>
+            <div className="inline-flex items-center gap-2 mb-4">
+              <svg
+                width={22}
+                height={25}
+                viewBox="0 0 24 28"
+                fill="currentColor"
+                className="text-white/70"
+              >
+                <path d="M12 0C5.4 0 0 3.6 0 5.5v15c0 1.2 2.4 3.5 5.5 5.2.9.5 1.9.9 2.8 1.2 1.1.4 2.3.7 3.7.7s2.6-.3 3.7-.7c.9-.3 1.9-.7 2.8-1.2C21.6 24 24 21.7 24 20.5v-15C24 3.6 18.6 0 12 0z" />
+              </svg>
+              <p className="text-2xl tracking-tight" style={serif}>
+                KommunalSektor
+              </p>
+            </div>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna. Frå
               praksis, ikkje skrivebordsøvingar.

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import Logo from "@/components/Logo";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -45,9 +46,7 @@ export default function OmPage() {
       {/* Nav */}
       <header className="border-b border-[rgba(28,28,26,0.09)] sticky top-0 bg-[#F2EEE6]/95 backdrop-blur-sm z-50">
         <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl tracking-tight" style={serif}>
-            KommunalSektor
-          </Link>
+          <Logo />
           <nav className="hidden md:flex gap-6 text-sm text-[#6B6860]">
             <Link href="/#kvifor" className="hover:text-[#1C1C1A] transition-colors">
               Kvifor
