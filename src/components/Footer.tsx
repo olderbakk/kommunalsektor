@@ -15,13 +15,13 @@ export default function Footer() {
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
               <svg
-                width={15}
-                height={25}
-                viewBox="0 0 18 28"
+                width={16}
+                height={20}
+                viewBox="0 0 135 171"
                 fill="currentColor"
                 className="text-white/70"
               >
-                <path d="M9 0C4 0 0 3.2 0 5v11c0 2 3 6.5 6.4 9.2.8.7 1.7 1.2 2.6 1.8.9-.6 1.8-1.1 2.6-1.8C15 22.5 18 18 18 16V5C18 3.2 14 0 9 0z" />
+                <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
               </svg>
               <p className="text-2xl tracking-tight" style={serif}>
                 KommunalSektor

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -6,20 +7,25 @@ const serif = {
 };
 
 export default function Logo({ size = "default" }: { size?: "default" | "large" }) {
-  const iconH = size === "large" ? 28 : 22;
-  const iconW = iconH * 0.65;
+  const h = size === "large" ? 28 : 22;
+  const w = Math.round(h * (135 / 171));
 
   return (
     <Link href="/" className="inline-flex items-center gap-2">
-      <svg
-        width={iconW}
-        height={iconH}
-        viewBox="0 0 18 28"
-        fill="currentColor"
-        className="text-[#2D4233]"
+      <div
+        style={{ width: w, height: h }}
+        className="relative"
       >
-        <path d="M9 0C4 0 0 3.2 0 5v11c0 2 3 6.5 6.4 9.2.8.7 1.7 1.2 2.6 1.8.9-.6 1.8-1.1 2.6-1.8C15 22.5 18 18 18 16V5C18 3.2 14 0 9 0z" />
-      </svg>
+        <svg
+          width={w}
+          height={h}
+          viewBox="0 0 135 171"
+          fill="currentColor"
+          className="text-[#2D4233]"
+        >
+          <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
+        </svg>
+      </div>
       <span
         className={size === "large" ? "text-2xl tracking-tight" : "text-xl tracking-tight"}
         style={serif}
