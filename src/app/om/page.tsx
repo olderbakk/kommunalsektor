@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -167,17 +168,7 @@ export default function OmPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-[rgba(28,28,26,0.09)] bg-[#2D4233] text-white">
-        <div className="mx-auto max-w-5xl px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xl tracking-tight" style={serif}>
-            KommunalSektor
-          </p>
-          <p className="text-sm text-white/40">
-            &copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

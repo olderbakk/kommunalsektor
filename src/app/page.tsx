@@ -1,5 +1,7 @@
 import Link from "next/link";
 import StepTabs from "@/components/StepTabs";
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -311,134 +313,31 @@ function SectionDomeOgKontakt() {
 
       {/* Kontakt */}
       <section id="kontakt" className="border-t border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-5xl px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl tracking-tight text-[#1C1C1A]" style={serif}>
-              Kontakt
-            </h2>
-            <p className="text-[#6B6860] text-base mt-2">
-              Er du nysgjerrig på korleis dette kan sjå ut i din kommune?
-            </p>
-            <p className="text-[#3a3a38] text-sm mt-3">
-              <span className="font-semibold">Selseng &amp; Systaddal AS</span>
-              <span className="text-[#6B6860] ml-2">
-                Helle Selseng &amp; Joakim Systaddal
-              </span>
-            </p>
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-16">
+            <div>
+              <h2 className="text-3xl sm:text-4xl tracking-tight text-[#1C1C1A] mb-6" style={serif}>
+                Ta kontakt
+              </h2>
+              <p className="text-[#3a3a38] leading-relaxed text-base mb-6">
+                Er du nysgjerrig på korleis dette kan sjå ut i din kommune? Eller har du erfaringar
+                du vil dele? Me høyrer gjerne frå deg.
+              </p>
+              <div className="text-sm text-[#6B6860] space-y-1">
+                <p className="font-medium text-[#1C1C1A]">Selseng &amp; Systaddal AS</p>
+                <p>Helle Selseng</p>
+                <p>Joakim Systaddal</p>
+                <p className="pt-2">Sogndal, Noreg</p>
+              </div>
+            </div>
+            <ContactForm />
           </div>
-          <Link
-            href="/om"
-            className="border border-[rgba(28,28,26,0.14)] px-6 py-3 rounded-full text-sm font-medium text-[#1C1C1A] hover:bg-[#E8E2D6] transition-colors flex-shrink-0"
-          >
-            Les meir om oss
-          </Link>
         </div>
       </section>
     </>
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-[rgba(28,28,26,0.09)] bg-[#2D4233] text-white">
-      <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-        {/* Top section */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
-          {/* Brand */}
-          <div className="sm:col-span-2 md:col-span-1">
-            <p className="text-2xl tracking-tight mb-3" style={serif}>
-              KommunalSektor
-            </p>
-            <p className="text-sm text-white/60 leading-relaxed">
-              Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna.
-            </p>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-              Innhald
-            </p>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="#kvifor" className="text-white/70 hover:text-white transition-colors">
-                  Kvifor kommune 4.0?
-                </Link>
-              </li>
-              <li>
-                <Link href="#operativsystem" className="text-white/70 hover:text-white transition-colors">
-                  Operativsystemet
-                </Link>
-              </li>
-              <li>
-                <Link href="#framgangsmaate" className="text-white/70 hover:text-white transition-colors">
-                  Framgangsmåte
-                </Link>
-              </li>
-              <li>
-                <Link href="/artiklar" className="text-white/70 hover:text-white transition-colors">
-                  Døme og artiklar
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Om */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-              Om oss
-            </p>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="/om" className="text-white/70 hover:text-white transition-colors">
-                  Om KommunalSektor
-                </Link>
-              </li>
-              <li>
-                <Link href="/om#partnarar" className="text-white/70 hover:text-white transition-colors">
-                  Partnarar
-                </Link>
-              </li>
-              <li>
-                <a href="https://travers.as/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-                  Travers
-                </a>
-              </li>
-              <li>
-                <a href="https://bogsnesadvisory.com/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-                  Bogsnes Advisory
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-              Kontakt
-            </p>
-            <div className="text-sm space-y-2.5">
-              <p className="text-white/90 font-medium">Selseng &amp; Systaddal AS</p>
-              <p className="text-white/60">Helle Selseng</p>
-              <p className="text-white/60">Joakim Systaddal</p>
-              <p className="text-white/60 mt-4">Sogndal, Noreg</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-white/40">
-            &copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS. Alt innhald er fritt tilgjengeleg.
-          </p>
-          <p className="text-sm text-white/40">
-            Inspirert av praksis i Sogndal kommune, 2023&ndash;2025
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 export default function Home() {
   return (

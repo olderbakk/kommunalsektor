@@ -1,6 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
 
 async function getPost(slug: string) {
@@ -118,18 +119,7 @@ export default async function ArtikkelPage({
         )}
       </article>
 
-      {/* Footer */}
-      <footer className="border-t border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#9B9790]">
-          <p>&copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS</p>
-          <p
-            style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
-            className="text-base text-[#6B6860]"
-          >
-            KommunalSektor.no
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
