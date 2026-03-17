@@ -47,7 +47,7 @@ export default async function ArtikkelListePage({
       <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-28">
         <h1
           className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#1C1C1A]"
-          style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontWeight: 400 }}
+          style={{ fontFamily: "var(--font-serif), 'Fraunces', serif", fontWeight: 400 }}
         >
           Døme og beskrivingar
         </h1>
