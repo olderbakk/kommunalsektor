@@ -83,3 +83,19 @@ body {
 .prose strong {
   font-weight: 600;
 }
+
+/* Kvifor section portable text */
+.prose-kvifor p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: #3a3a38;
+}
+
+.prose-kvifor p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-kvifor strong {
+  font-weight: 500;
+  color: #2D4233;
+}
