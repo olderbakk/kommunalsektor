@@ -28,9 +28,7 @@ function Hero() {
         className="text-4xl sm:text-5xl md:text-6xl tracking-tight leading-tight text-[#1C1C1A]"
         style={serif}
       >
-        Eit nytt operativsystem
-        <br />
-        for kommunane
+        Velkommen til kommune 4.0
       </h1>
       <p className="mt-6 text-lg sm:text-xl text-[#6B6860] max-w-xl mx-auto leading-relaxed">
         Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna.
