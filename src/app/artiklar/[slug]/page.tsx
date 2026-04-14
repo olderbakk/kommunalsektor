@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
@@ -23,6 +24,38 @@ async function getPost(slug: string) {
     }`,
     { slug }
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) return {};
+
+  const ogImage = post.image
+    ? urlFor(post.image).width(1200).height(630).url()
+    : undefined;
+
+  return {
+    title: post.title,
+    description: post.summary ?? undefined,
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.summary ?? undefined,
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
+      ...(post.publishedAt && { publishedTime: post.publishedAt }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary ?? undefined,
+      ...(ogImage && { images: [ogImage] }),
+    },
+  };
 }
 
 export default async function ArtikkelPage({

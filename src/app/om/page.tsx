@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import { client } from "@/sanity/lib/client";
+
+export const metadata: Metadata = {
+  title: "Om oss",
+  description: "Kven vi er, kva vi trur på, og kvifor KommunalSektor finst.",
+};
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",

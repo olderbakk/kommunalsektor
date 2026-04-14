@@ -17,10 +17,34 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const siteTitle = "KommunalSektor — Eit nytt operativsystem for kommunane";
+const siteDescription =
+  "Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna. Frå praksis, ikkje skrivebordsøvingar.";
+
 export const metadata: Metadata = {
-  title: "KommunalSektor — Eit nytt operativsystem for kommunane",
-  description:
-    "Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna. Frå praksis, ikkje skrivebordsøvingar.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "https://kommunalsektor.vercel.app"),
+  ),
+  title: {
+    default: siteTitle,
+    template: "%s — KommunalSektor",
+  },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    locale: "nn_NO",
+    siteName: "KommunalSektor",
+    title: siteTitle,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({

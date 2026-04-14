@@ -24,7 +24,7 @@ function capitalize(s: string) {
 }
 
 export const metadata = {
-  title: "Artiklar — KommunalSektor",
+  title: "Artiklar",
   description: "Artiklar, erfaringar og refleksjonar frå arbeidet med å gjere noko anna i kommunane.",
 };
 
