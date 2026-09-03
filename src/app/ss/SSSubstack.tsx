@@ -27,7 +27,7 @@ export default async function SSSubstack({
           </h2>
         )}
         {ingress && (
-          <p className="text-[#6B6860] leading-relaxed max-w-xl">{ingress}</p>
+          <p className="text-[#6B6860] leading-relaxed">{ingress}</p>
         )}
 
         <div className="grid gap-px bg-[#E4DBCB] border border-[#E4DBCB] rounded-2xl overflow-hidden mt-8 sm:grid-cols-3">

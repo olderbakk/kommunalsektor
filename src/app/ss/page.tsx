@@ -101,14 +101,14 @@ export default async function SSHome() {
 
       {/* ── 1 · Utviklingskapasitet ─────────────────────────── */}
       <section className="px-6 sm:px-10 pb-20 sm:pb-24">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {side.bolk1Tittel && (
             <h2 className="text-2xl sm:text-[2rem] font-medium text-[#2F2B26] tracking-tight leading-snug text-balance">
               {side.bolk1Tittel}
             </h2>
           )}
           {side.bolk1Ingress && (
-            <p className="text-[#6B6860] leading-relaxed text-lg mt-4 max-w-xl">
+            <p className="text-[#6B6860] leading-relaxed text-lg mt-4">
               {side.bolk1Ingress}
             </p>
           )}
@@ -213,7 +213,7 @@ export default async function SSHome() {
             </h2>
           )}
           {side.folkaIngress && (
-            <p className="text-[#6B6860] leading-relaxed mt-4 max-w-xl">
+            <p className="text-[#6B6860] leading-relaxed mt-4">
               {side.folkaIngress}
             </p>
           )}
