@@ -1,4 +1,6 @@
+import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
+import { ssPortableText } from "./ssPortableText";
 import SSAnimatedHeadline from "./SSAnimatedHeadline";
 import SSHandlingsromMerke from "./SSHandlingsromMerke";
 import SSLenke from "./SSLenke";
@@ -20,7 +22,7 @@ type Framside = {
   heroHogre?: string;
   tagline?: string;
   bolk1Tittel?: string;
-  bolk1Ingress?: string;
+  bolk1Ingress?: unknown[];
   temaTittel?: string;
   kjerneTittel?: string;
   kjerneTekst?: string;
@@ -107,10 +109,13 @@ export default async function SSHome() {
               {side.bolk1Tittel}
             </h2>
           )}
-          {side.bolk1Ingress && (
-            <p className="text-[#6B6860] leading-relaxed text-lg mt-4">
-              {side.bolk1Ingress}
-            </p>
+          {side.bolk1Ingress && side.bolk1Ingress.length > 0 && (
+            <div className="prose-ss text-[#6B6860] leading-relaxed text-lg mt-4">
+              <PortableText
+                value={side.bolk1Ingress as never}
+                components={ssPortableText}
+              />
+            </div>
           )}
 
           {tema.length > 0 && (

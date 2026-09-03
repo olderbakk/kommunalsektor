@@ -58,9 +58,10 @@ export default defineType({
     defineField({
       name: "bolk1Ingress",
       title: "Ingress",
-      type: "text",
-      rows: 3,
+      type: "array",
+      of: [ssRichBlock],
       group: "bolk1",
+      description: "Marker ord med halvfeit der du vil ha trykk.",
     }),
     defineField({
       name: "temaTittel",
