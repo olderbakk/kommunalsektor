@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
 import SSAnimatedHeadline from "./SSAnimatedHeadline";
 import SSHandlingsromMerke from "./SSHandlingsromMerke";
 import SSLenke from "./SSLenke";
@@ -15,8 +13,6 @@ type Tema = {
   posisjon: Posisjon;
   kortTekst: string;
 };
-
-type Person = { name?: string; image?: unknown };
 
 type Framside = {
   heroVenstre?: string;
@@ -39,18 +35,13 @@ type Framside = {
   folkaLenketekst?: string;
 };
 
-async function hentData(): Promise<{
-  side: Framside | null;
-  tema: Tema[];
-  folk: Person[];
-}> {
+async function hentData(): Promise<{ side: Framside | null; tema: Tema[] }> {
   return client.fetch(
     `{
       "side": *[_type == "ssHomepage"][0],
       "tema": *[_type == "ssTema"] | order(rekkjefolgje asc) {
         _id, tittel, slug, posisjon, kortTekst
-      },
-      "folk": *[_type == "ssFolkPage"][0].people[]{ name, image }
+      }
     }`,
     {},
     { next: { revalidate: 60 } },
@@ -61,7 +52,7 @@ const merkelapp =
   "text-[11px] uppercase tracking-[0.16em] font-medium text-[#A65F3D]";
 
 export default async function SSHome() {
-  const { side, tema, folk } = await hentData();
+  const { side, tema } = await hentData();
 
   if (!side) {
     return (
@@ -202,29 +193,6 @@ export default async function SSHome() {
             <p className="text-[#6B6860] leading-relaxed mt-4 max-w-xl">
               {side.folkaIngress}
             </p>
-          )}
-
-          {folk && folk.length > 0 && (
-            <div className="flex flex-wrap gap-8 mt-8">
-              {folk.map((p, i) => (
-                <div key={p.name ?? i} className="flex items-center gap-4">
-                  {p.image ? (
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden bg-[#ECE4D6] shrink-0">
-                      <Image
-                        src={urlFor(p.image).width(160).height(160).url()}
-                        alt={p.name ?? ""}
-                        fill
-                        sizes="56px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : null}
-                  <span className="text-[#2F2B26] font-medium tracking-tight">
-                    {p.name}
-                  </span>
-                </div>
-              ))}
-            </div>
           )}
 
           <SSLenke
