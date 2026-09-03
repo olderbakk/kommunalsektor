@@ -48,6 +48,7 @@ function ssStructure(S: StructureBuilder) {
             .schemaType("ssFolkPage")
             .documentId("fe9bc38a-3ffb-4fde-a381-53fc3c32c843"),
         ),
+      S.documentTypeListItem("ssTema").title("Tema"),
     ]);
 }
 

@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from "react";
 
-const WORDS = ["folk", "system"] as const;
-const MIDDLE = "skapar";
 const INTERVAL_MS = 5000;
 
-export default function SSAnimatedHeadline() {
+type Props = {
+  venstre?: string;
+  verb?: string;
+  hogre?: string;
+};
+
+export default function SSAnimatedHeadline({
+  venstre = "folk",
+  verb = "formar",
+  hogre = "system",
+}: Props) {
   const [swapped, setSwapped] = useState(false);
 
   useEffect(() => {
@@ -20,13 +28,13 @@ export default function SSAnimatedHeadline() {
     return () => clearInterval(id);
   }, []);
 
-  const leftText = swapped ? WORDS[1] : WORDS[0];
-  const rightText = swapped ? WORDS[0] : WORDS[1];
+  const leftText = swapped ? hogre : venstre;
+  const rightText = swapped ? venstre : hogre;
 
   return (
     <h1 className="ssh">
       <Word key={`left-${swapped}`} text={leftText} dir={1} />
-      <span className="ssh__mid">{MIDDLE}</span>
+      <span className="ssh__mid">{verb}</span>
       <Word key={`right-${swapped}`} text={rightText} dir={-1} />
     </h1>
   );

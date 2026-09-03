@@ -5,6 +5,7 @@ import SSNavCards from "./SSNavCards";
 import SSFooter from "./SSFooter";
 
 // Nav-kort og footer-CTA er overflødige på kontaktsida — den er sjølv målet.
+// Framsida har Folka som eigen bolk, så korta blir dobbelt opp der.
 export default function SSPageEnd() {
   const rawPathname = usePathname();
   const pathname = rawPathname.startsWith("/ss")
@@ -13,9 +14,11 @@ export default function SSPageEnd() {
 
   if (pathname === "/ss/kontakt") return null;
 
+  const utanNavKort = pathname === "/ss";
+
   return (
     <>
-      <SSNavCards />
+      {!utanNavKort && <SSNavCards />}
       <SSFooter />
     </>
   );

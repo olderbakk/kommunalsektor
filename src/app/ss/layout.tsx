@@ -20,8 +20,10 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  // «absolute» hindrar at rot-layouten sin mal («%s — KommunalSektor»)
+  // blir lagt på tittelen for /ss. Malen under gjeld undersidene.
   title: {
-    default: "Selseng & Systaddal",
+    absolute: "Selseng & Systaddal",
     template: "%s — Selseng & Systaddal",
   },
   description: "Fornying av offentleg sektor. Frå innsida.",
