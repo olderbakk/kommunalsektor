@@ -193,3 +193,31 @@ body {
   letter-spacing: -0.01em;
   line-height: 1.4;
 }
+
+/* ── SS: dei fire delane stilte opp som krysset i symbolet ── */
+.ss-kryss {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "kjerne"
+    "topp"
+    "venstre"
+    "hogre"
+    "botn";
+}
+
+@media (min-width: 768px) {
+  .ss-kryss {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      ".       topp   ."
+      "venstre kjerne hogre"
+      ".       botn   .";
+  }
+}
+
+.ss-kryss__topp { grid-area: topp; }
+.ss-kryss__venstre { grid-area: venstre; }
+.ss-kryss__hogre { grid-area: hogre; }
+.ss-kryss__botn { grid-area: botn; }
+.ss-kryss__kjerne { grid-area: kjerne; }

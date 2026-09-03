@@ -70,6 +70,22 @@ export default defineType({
       initialValue: "Me jobbar med",
     }),
     defineField({
+      name: "kjerneTittel",
+      title: "Kjernen i midten",
+      type: "string",
+      group: "bolk1",
+      description:
+        "Står i midten av krysset, mellom dei fire delane. Ikkje ei lenkje.",
+      initialValue: "Trua på folk",
+    }),
+    defineField({
+      name: "kjerneTekst",
+      title: "Kjernen: undertekst",
+      type: "text",
+      rows: 3,
+      group: "bolk1",
+    }),
+    defineField({
       name: "effektTittel",
       title: "Merkelapp over effektane",
       type: "string",

@@ -22,6 +22,8 @@ type Framside = {
   bolk1Tittel?: string;
   bolk1Ingress?: string;
   temaTittel?: string;
+  kjerneTittel?: string;
+  kjerneTekst?: string;
   effektTittel?: string;
   effektar?: string[];
   ctaTekst?: string;
@@ -99,7 +101,7 @@ export default async function SSHome() {
 
       {/* ── 1 · Utviklingskapasitet ─────────────────────────── */}
       <section className="px-6 sm:px-10 pb-20 sm:pb-24">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {side.bolk1Tittel && (
             <h2 className="text-2xl sm:text-[2rem] font-medium text-[#2F2B26] tracking-tight leading-snug text-balance">
               {side.bolk1Tittel}
@@ -116,21 +118,42 @@ export default async function SSHome() {
               {side.temaTittel && (
                 <p className={`${merkelapp} mt-14 mb-5`}>{side.temaTittel}</p>
               )}
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="ss-kryss">
+                <div className="ss-kryss__kjerne flex flex-col justify-center rounded-2xl bg-[#314D3C] text-[#F6F1E8] p-5 text-center">
+                  <span className="text-[10.5px] uppercase tracking-[0.18em] text-[#B9B0A2]">
+                    Kjernen
+                  </span>
+                  {side.kjerneTittel && (
+                    <span
+                      className="text-[#FAF8F3] font-medium text-lg tracking-tight mt-2"
+                      style={{
+                        fontFamily: "var(--font-serif-ss), 'Source Serif 4', serif",
+                      }}
+                    >
+                      {side.kjerneTittel}
+                    </span>
+                  )}
+                  {side.kjerneTekst && (
+                    <span className="text-[#DDD1BE] text-[13px] leading-relaxed mt-2">
+                      {side.kjerneTekst}
+                    </span>
+                  )}
+                </div>
+
                 {tema.map((t) => (
                   <SSLenke
                     key={t._id}
                     href={`/ss/tema/${t.slug.current}`}
-                    className="group flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-6 hover:border-[#CFC5B2] hover:shadow-sm transition-all"
+                    className={`ss-kryss__${t.posisjon} group flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-5 hover:border-[#CFC5B2] hover:shadow-sm transition-all`}
                   >
                     <SSHandlingsromMerke posisjon={t.posisjon} />
-                    <h3 className="text-[#2F2B26] font-medium text-lg tracking-tight mt-5">
+                    <h3 className="text-[#2F2B26] font-medium text-[17px] tracking-tight mt-4">
                       {t.tittel}
                     </h3>
                     <p className="text-[#6B6860] text-sm leading-relaxed mt-2">
                       {t.kortTekst}
                     </p>
-                    <span className="text-[#A65F3D] text-sm font-medium mt-5">
+                    <span className="text-[#A65F3D] text-sm font-medium mt-4">
                       Les meir{" "}
                       <span
                         aria-hidden
