@@ -6,13 +6,13 @@ import { Analytics } from "@vercel/analytics/react";
 /**
  * Sporing for begge domena denne appen serverer.
  *
- * Innsikt-teljaren er hovudkjelda. Han sender vertsnamnet med, so
+ * Innsikt-teljaren er hovudkjelda. Han sender vertsnamnet med, så
  * selsengsystaddal.no og kommunalsektor.no blir skilde utan triks, og tala
- * hamnar rett i var eigen database.
+ * hamnar rett i vår eigen database.
  *
- * Vercel Web Analytics star igjen som ekstra syn i Vercel-dashbordet. API-et
- * deira gir ikkje ut tal pa Hobby-planen, sa det er berre til a kikke pa.
- * Prefikset /ss og /ks er det som skil merkevarene der.
+ * Vercel Web Analytics står igjen som eit ekstra syn i Vercel-dashbordet.
+ * API-et deira gir ikkje ut tal på Hobby-planen, så det er berre til å kikke
+ * på. Prefikset /ss og /ks er det som skil merkevarene der.
  */
 export default function Sporing() {
   return (
